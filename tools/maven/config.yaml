@@ -1,5 +1,5 @@
 tools:
-  maven_install:
-    signature: "maven_install"
+  mvn:
+    signature: "mvn <command>"
     docstring: "execute maven install for the given Java repo"
     arguments: []
