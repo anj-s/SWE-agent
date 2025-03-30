@@ -1034,6 +1034,7 @@ class DefaultAgent(AbstractAgent):
 
         def handle_error_with_retry(exception: Exception, template: str, n_requeries: int) -> list[dict[str, str]]:
             """Requeries the model if the error is a format/blocklist/bash syntax error."""
+            self.logger.error(f"Exception {exception}")
             self.logger.warning("Requerying model after %s (%dth requery)", type(exception).__name__, n_requeries)
             step: StepOutput = getattr(exception, "step", StepOutput())
             self.add_step_to_trajectory(step)

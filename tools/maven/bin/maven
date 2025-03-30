@@ -1,4 +1,6 @@
 main() {
+    export PATH=$PATH:/usr/share/maven/bin
+    cd $ROOT
     mvn -X install
 }
 
