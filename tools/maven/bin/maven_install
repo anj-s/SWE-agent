@@ -1,6 +1,6 @@
 main() {
-    cd $ROOT
-    mvn -X install
+    pwd
+    mvn install
 }
 
 main "$@"

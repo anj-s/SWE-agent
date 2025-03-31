@@ -155,6 +155,7 @@ class GithubRepoConfig(BaseModel):
         base_commit = self.base_commit
         github_token = os.getenv("GITHUB_TOKEN", "")
         url = self._get_url_with_token(github_token)
+        print(f"Cloning repository {self.github_url} to {self.repo_name} at commit {base_commit}")
         asyncio.run(
             deployment.runtime.execute(
                 Command(

@@ -20,6 +20,11 @@ RUN mkdir -p /etc/apt/keyrings && \
     echo "deb [signed-by=/etc/apt/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
 
 
+RUN apt-get update && apt-get install -y --allow-downgrades --no-install-recommends \
+    temurin-17-jdk=17.0.13.0.0+11 \
+    maven=3.8.7-1
+
+
 # Copy the application code
 # Do this last to take advantage of the docker layer mechanism
 COPY . /app
