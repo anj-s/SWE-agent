@@ -29,4 +29,3 @@ RUN pip install -e '.'
 
 # Install react dependencies ahead of time
 RUN cd sweagent/frontend && npm install
- 

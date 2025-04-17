@@ -1065,33 +1065,39 @@ class DefaultAgent(AbstractAgent):
 
             except FormatError as e:
                 n_format_fails += 1
+                print(f"Format error: {e}")
                 history = handle_error_with_retry(
                     exception=e, template=self.tools.config.format_error_template, n_requeries=n_format_fails
                 )
             except _BlockedActionError as e:
                 n_format_fails += 1
+                print(f"Blocked action error: {e}")
                 history = handle_error_with_retry(
                     exception=e, template=self.tools.config.filter.blocklist_error_template, n_requeries=n_format_fails
                 )
             except ContentPolicyViolationError:
                 self.logger.warning("Content policy violation, trying to resample")
                 n_format_fails += 1
+                print(f"Content policy violation: {e}")
                 # Try if simply resampling helps here
                 pass
             except BashIncorrectSyntaxError as e:
                 n_format_fails += 1
+                print(f"Bash syntax error: {e}")
                 history = handle_error_with_retry(
                     exception=e,
                     template=self.templates.shell_check_error_template,
                     n_requeries=n_format_fails,
                 )
             except _RetryWithOutput as e:
+                print(f"Retry with output: {e}")
                 history = handle_error_with_retry(
                     exception=e,
                     template=self.templates.next_step_template,
                     n_requeries=n_format_fails,
                 )
             except _RetryWithoutOutput:
+                print(f"Retry without output")
                 pass
                 # Requery with the same template as the last step
 

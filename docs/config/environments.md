@@ -5,25 +5,25 @@ If you are running on SWE-Benmch, every instance has a docker image that we pull
 
 Here's an example of a simple custom docker environment:
 
-```dockerfile title="tiny.Dockerfile"
-FROM python:3.11.10-bullseye  # (1)!
+    ```dockerfile title="tiny.Dockerfile"
+    FROM python:3.11.10-bullseye  # (1)!
 
-ARG DEBIAN_FRONTEND=noninteractive  # (2)!
-ENV TZ=Etc/UTC
+    ARG DEBIAN_FRONTEND=noninteractive  # (2)!
+    ENV TZ=Etc/UTC
 
-WORKDIR /
+    WORKDIR /
 
-# Install swe-rex for faster startup
-RUN pip install pipx
-RUN pipx install swe-rex
-RUN pipx ensurepath
-ENV PATH="$PATH:/root/.local/bin/"
+    # Install swe-rex for faster startup
+    RUN pip install pipx
+    RUN pipx install swe-rex
+    RUN pipx ensurepath
+    ENV PATH="$PATH:/root/.local/bin/"
 
-# Install any extra dependencies
-RUN pip install flake8
+    # Install any extra dependencies
+    RUN pip install flake8
 
-SHELL ["/bin/bash", "-c"]
-```
+    SHELL ["/bin/bash", "-c"]
+    ```
 
 1. This is the base image that we're starting from
 2. Important to disable any interactive prompts when installing things
