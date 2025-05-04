@@ -1,6 +1,0 @@
-main() {
-    cd $ROOT
-    mvn dependency:tree
-}
-
-main "$@"
