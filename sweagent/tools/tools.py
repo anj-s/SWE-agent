@@ -207,6 +207,7 @@ class ToolHandler:
         self.logger.info("Resetting tools")
         env.set_env_variables(self.config.env_variables)
         env.write_file("/root/.swe-agent-env", json.dumps(self.config.registry_variables))
+        env.write_file("/root/state.json", "{}")
         env.communicate(" && ".join(self._reset_commands), check="raise", timeout=self.config.install_timeout)
 
     async def _upload_bundles(self, env: SWEEnv) -> None:
@@ -242,7 +243,7 @@ class ToolHandler:
         asyncio.run(self._upload_bundles(env))
         for bundle in self.config.bundles:
             cmds = [
-                f"export PATH=$PATH:/root/tools/{bundle.path.name}/bin",
+                f"export PATH=/root/tools/{bundle.path.name}/bin:$PATH",
                 f"chmod +x /root/tools/{bundle.path.name}/bin/*",
             ]
             if (bundle.path / "install.sh").exists():
