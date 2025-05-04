@@ -1,5 +1,9 @@
 tools:
-  maven:
-    signature: "maven"
-    docstring: "execute maven install for the given Java repo"
+  maven_install:
+    signature: "maven_install"
+    docstring: "execute maven install in the current directory"
+    arguments: []
+  maven_dep_tree:
+    signature: "maven_dep_tree"
+    docstring: "show maven dependency tree (runs 'mvn dependency:tree' in $ROOT)"
     arguments: []
