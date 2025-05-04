@@ -108,7 +108,8 @@ agent:
       # - path: tools/edit_linting
       - path: tools/edit_replace
       - path: tools/submit
-      - path: tools/maven
+      - path: tools/maven_install
+      - path: tools/maven_dep_tree
     enable_bash_tool: true
     parse_function:
       type: function_calling
