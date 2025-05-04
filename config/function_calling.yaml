@@ -90,8 +90,7 @@ agent:
       - path: tools/search
       - path: tools/edit_linting
       - path: tools/submit
-      - path: tools/maven_install
-      - path: tools/maven_dep_tree
+      - path: tools/maven
       - path: tools/edit_replace
     enable_bash_tool: true
     parse_function:
