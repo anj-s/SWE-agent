@@ -143,7 +143,7 @@ class SWEEnv:
         """
         self.communicate(input="cd /", check="raise")
         self._copy_repo()
-        #self._reset_repository()
+        self._reset_repository()
         self._chook.on_environment_startup()
 
     def _reset_repository(self) -> None:
